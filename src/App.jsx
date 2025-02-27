@@ -27,7 +27,12 @@ function App() {
     setPriceBitcoin(result.data[1][4]/1)
     setPriceBitcoinBofore(result.data[0][4]/1)
   }
- 
+  
+  const handleResize = () => {
+    if (chartRef.current) {
+      chartRef.current.resize(chartDiv.current.clientWidth, chartDiv.current.clientHeight);
+    }
+  };
   useEffect(()=>{
     handleGetBitCoin()
   },[])
@@ -78,11 +83,16 @@ function App() {
         chartRef.current.timeScale().fitContent();
         getDataChart()
 
+        
+        window.addEventListener("resize",handleResize)
+
       }
+
 
 
   return ()=>{
     chartRef.current.remove();
+    window.removeEventListener("resize",handleResize)
   }
       },[mode,frame])
   return (
