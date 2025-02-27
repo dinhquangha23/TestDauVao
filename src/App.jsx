@@ -102,8 +102,7 @@ function App() {
       
     </div>
       
-      <div ref={chartDiv}
-      style={{width:"100%", height: "98vh", background:"blue"}}>
+      <div className='chart' ref={chartDiv}>
       </div>
     </>
   )
